@@ -19,6 +19,8 @@ struct RecentView: View {
             
             VStack {
                 
+                TotalDataView(totalData: covidFetch.totalData)
+                
                 ListHeaderView()
                 
                 List {
@@ -28,7 +30,7 @@ struct RecentView: View {
                     }, id: \.country) { countryData in
                         
                         
-                        Text("ff")
+                        CountryDataRowView(countryData: countryData)
                     }
                 }
                 

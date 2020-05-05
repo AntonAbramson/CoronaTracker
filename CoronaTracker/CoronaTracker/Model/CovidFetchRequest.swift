@@ -22,14 +22,17 @@ class CovidFetchRequest: ObservableObject {
     ]
     
     init(){
+        
         getAllCountries()
         getCurrentTotal()
+
+
     }
     
     func getCurrentTotal() {
 
         
-        AF.request("https://covid-19-data.p.rapidapi.com/totals?format=json", headers: headers).responseJSON { response in
+        AF.request("https://covid-19-data.p.rapidapi.com/totals?format=unknown", headers: headers).responseJSON { response in
 
             let result = response.data
             
@@ -52,10 +55,10 @@ class CovidFetchRequest: ObservableObject {
     }
     
     
-    func getAllCountries(){
+    func getAllCountries() {
         
 
-            AF.request("https://covid-19-data.p.rapidapi.com/country/all?format=json", headers: headers).responseJSON { response in
+            AF.request("https://covid-19-data.p.rapidapi.com/country/all?format=unknown", headers: headers).responseJSON { response in
                 
                 let result = response.value
                 var allCount: [CountryData] = []
