@@ -18,15 +18,13 @@ class CovidFetchRequest: ObservableObject {
     
     let headers: HTTPHeaders = [
         "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
-        "x-rapidapi-key": "01a67406a3mshfe3eb7843e87f33p1d1740jsn0a3fe2bbf77e"
+        "x-rapidapi-key": "d172e810e7msh47584ae043c146dp12d8eejsnb0b3c42c4a59"
     ]
     
     init(){
         
-        getAllCountries()
         getCurrentTotal()
-        
-
+        getAllCountries()
 
     }
     
@@ -62,7 +60,7 @@ class CovidFetchRequest: ObservableObject {
             AF.request("https://covid-19-data.p.rapidapi.com/country/all?format=undefined", headers: headers).responseJSON { response in
                 
                 let result = response.value
-                var allCount: [CountryData] = []
+                var allCountries: [CountryData] = []
                 
                 if result != nil {
                     
@@ -81,10 +79,10 @@ class CovidFetchRequest: ObservableObject {
                         
                         let countryObject = CountryData(country: country, confirmed: confirmed, critical: critical, deaths: deaths, recovered: recovered, longitude: longitude, latitude: latitude)
                         
-                        allCount.append(countryObject)
+                        allCountries.append(countryObject)
                     }
                 }
-                self.allCountries = allCount.sorted(by: { $0.confirmed > $1.confirmed })
+                self.allCountries = allCountries.sorted(by: { $0.confirmed > $1.confirmed })
         }
     }
 }
